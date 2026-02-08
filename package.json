@@ -1,0 +1,22 @@
+{
+  "name": "sky-store-pro",
+  "version": "3.1.0",
+  "description": "Sky Store - Professional E-Commerce Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["ecommerce", "store", "shopping"],
+  "author": "Sky Store",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "private": true
+}
