@@ -35,6 +35,8 @@ export default function HomePage({ onSelectDay, onNavigate }: HomePageProps) {
       onNavigate('subscribe');
       return;
     }
+    const status = getDayStatus(day);
+    if (status === 'locked') return;
     onSelectDay(day);
   };
 
@@ -44,7 +46,6 @@ export default function HomePage({ onSelectDay, onNavigate }: HomePageProps) {
     if (!isSubscribed) return 'locked';
     const nextDay = completedDays.length > 0 ? Math.max(...completedDays) + 1 : 1;
     if (day === nextDay) return 'current';
-    if (day <= nextDay) return 'completed';
     return 'locked';
   };
 
