@@ -26,7 +26,6 @@ export default function Timer({ duration, onComplete, isActive, onStart }: Timer
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(interval);
-          onComplete();
           return 0;
         }
         return prev - 1;
@@ -34,7 +33,13 @@ export default function Timer({ duration, onComplete, isActive, onStart }: Timer
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isActive, isPaused, timeLeft, onComplete]);
+  }, [isActive, isPaused, timeLeft]);
+
+  useEffect(() => {
+    if (timeLeft === 0 && isActive && !isPaused) {
+      onComplete();
+    }
+  }, [timeLeft, isActive, isPaused, onComplete]);
 
   const handleToggle = useCallback(() => {
     if (!isActive) {
