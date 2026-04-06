@@ -22,10 +22,18 @@ export default function BeforeAfterPage() {
       const result = reader.result as string;
       if (type === 'before') {
         setBeforeImg(result);
-        localStorage.setItem('skyface_before', result);
+        try {
+          localStorage.setItem('skyface_before', result);
+        } catch (e) {
+          console.warn('Could not save image to localStorage:', e);
+        }
       } else {
         setAfterImg(result);
-        localStorage.setItem('skyface_after', result);
+        try {
+          localStorage.setItem('skyface_after', result);
+        } catch (e) {
+          console.warn('Could not save image to localStorage:', e);
+        }
       }
     };
     reader.readAsDataURL(file);
