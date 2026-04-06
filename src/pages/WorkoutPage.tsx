@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { exercises } from '../data/exercises';
+import { getRoutineForDay, getRoutineNameKey } from '../data/exercises';
 import YouTubePlayer from '../components/YouTubePlayer';
 import Timer from '../components/Timer';
 
@@ -18,8 +18,10 @@ export default function WorkoutPage({ day, onComplete, onBack }: WorkoutPageProp
   const [timerDone, setTimerDone] = useState(false);
   const [workoutDone, setWorkoutDone] = useState(false);
 
-  const exercise = exercises[currentExercise];
-  const isLast = currentExercise === exercises.length - 1;
+  const dayExercises = getRoutineForDay(day);
+  const routineNameKey = getRoutineNameKey(day);
+  const exercise = dayExercises[currentExercise];
+  const isLast = currentExercise === dayExercises.length - 1;
 
   const handleTimerComplete = useCallback(() => {
     setTimerDone(true);
@@ -84,29 +86,30 @@ export default function WorkoutPage({ day, onComplete, onBack }: WorkoutPageProp
         </button>
         <div className="text-right">
           <span className="text-neon-blue font-bold">{t.dayNumber(day)}</span>
+          <p className="text-xs text-gray-400">{t[routineNameKey]}</p>
         </div>
       </div>
 
       {/* Progress dots */}
       <div className="flex items-center justify-center gap-2 mb-6">
-        {exercises.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-300
-              ${i === currentExercise
-                ? 'w-8 bg-neon-blue'
-                : i < currentExercise
-                  ? 'w-4 bg-cyber-lime'
-                  : 'w-4 bg-white/10'
-              }`}
-          />
-        ))}
+          {dayExercises.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300
+                ${i === currentExercise
+                  ? 'w-8 bg-neon-blue'
+                  : i < currentExercise
+                    ? 'w-4 bg-cyber-lime'
+                    : 'w-4 bg-white/10'
+                }`}
+            />
+          ))}
       </div>
 
       {/* Exercise Info */}
       <div className="mb-4">
         <p className="text-gray-400 text-sm text-center mb-2">
-          {t.exerciseOf(currentExercise + 1, exercises.length)}
+          {t.exerciseOf(currentExercise + 1, dayExercises.length)}
         </p>
         <h2 className="text-2xl font-bold text-center text-white mb-2">
           {lang === 'ar' ? exercise.titleAr : exercise.titleEn}

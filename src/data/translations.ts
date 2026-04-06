@@ -32,6 +32,11 @@ export interface Translations {
   warmup: string;
   jawlineExercise: string;
   faceSculpt: string;
+  jawlineFocus: string;
+  faceLiftCheek: string;
+  cooldown: string;
+  coreJawline: string;
+  coreFaceLift: string;
   exercise: string;
   exerciseOf: (current: number, total: number) => string;
   timeRemaining: string;
@@ -135,6 +140,11 @@ export const translations: Record<Language, Translations> = {
     warmup: 'الإحماء',
     jawlineExercise: 'تمرين الفك',
     faceSculpt: 'نحت الوجه',
+    jawlineFocus: 'تركيز على الفك',
+    faceLiftCheek: 'شد الوجه والخدين',
+    cooldown: 'تهدئة واسترخاء',
+    coreJawline: 'تمرين الفك الأساسي',
+    coreFaceLift: 'تمرين شد الوجه والخدين',
     exercise: 'تمرين',
     exerciseOf: (current: number, total: number) => `التمرين ${current} من ${total}`,
     timeRemaining: 'الوقت المتبقي',
@@ -233,6 +243,11 @@ export const translations: Record<Language, Translations> = {
     warmup: 'Warmup',
     jawlineExercise: 'Jawline Exercise',
     faceSculpt: 'Face Sculpt',
+    jawlineFocus: 'Jawline Focus',
+    faceLiftCheek: 'Face Lift & Cheek Focus',
+    cooldown: 'Cool-down',
+    coreJawline: 'Core Jawline Exercise',
+    coreFaceLift: 'Core Face Lift & Cheek Exercise',
     exercise: 'Exercise',
     exerciseOf: (current: number, total: number) => `Exercise ${current} of ${total}`,
     timeRemaining: 'Time Remaining',
